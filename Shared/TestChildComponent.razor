@@ -1,4 +1,4 @@
-﻿<h3>Numbers</h3>
+﻿<h3>Numbers divisible by the selected number </h3>
 <ul>
     @foreach (var num in Numbers)
     {
@@ -9,5 +9,5 @@
 @code {
 
     [Parameter]
-    public IEnumerable<int> Numbers { get; set; }
+    public List<int> Numbers { get; set; }
 }

@@ -12,10 +12,10 @@
 @code {
     int? SelectedNumber { get; set; } = 4;
 
-    IEnumerable<int> NumbersToSelectFrom { get; set; } = Enumerable.Range(1, 10).ToList();
+    List<int> NumbersToSelectFrom { get; set; } = Enumerable.Range(1, 10).ToList();
 
-    IEnumerable<int> AllNumbers { get; set; }
-    IEnumerable<int> FilteredNumbers
+    List<int> AllNumbers { get; set; }
+    List<int> FilteredNumbers
     {
         get
         {
@@ -23,7 +23,7 @@
 
             if (SelectedNumber != null )
             {
-                filtered = AllNumbers.Where(n => n % SelectedNumber == 0);
+                filtered = AllNumbers.Where(n => n % SelectedNumber == 0).ToList();
             }            
 
             return filtered;
