@@ -1,0 +1,34 @@
+﻿<h3>Number Selector</h3>
+
+<div>
+    <select size="10" @bind="SelectedNumberText">
+        @foreach (var i in NumRange)
+        {
+            <option value="@i">Bigger Words To Click @i</option>
+        }
+    </select>
+</div>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<int> NumRange { get; set; }
+
+    [Parameter]
+    public Action<int> OnNumberSelected { get; set; }
+
+    string SelectedNumberText
+    {
+        get
+        {
+            return SelectedNumber.ToString();
+        }
+        set
+        {
+            SelectedNumber = int.Parse(value);
+            OnNumberSelected(SelectedNumber);
+        }
+    }
+
+    public int SelectedNumber { get; set; }
+}

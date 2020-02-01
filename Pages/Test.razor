@@ -1,0 +1,42 @@
+﻿@page "/Test"
+
+<div class="col">
+
+    <TestNumberSelector NumRange="@NumbersToSelectFrom" OnNumberSelected="@OnNumberSelectedCallback" />
+
+    <p>Selected Number: @SelectedNumber</p>
+    <p>Selected Number x 2: @SelectedNumberTimesTwo</p>
+
+    <TestChildComponent Numbers="FilteredNumbers" />
+</div>
+
+@code {
+    int SelectedNumber { get; set; } = 10;
+    int SelectedNumberTimesTwo
+    {
+        get
+        {
+            return SelectedNumber * 2;
+        }
+
+        set
+        {
+        }
+    }
+
+    IEnumerable<int> NumbersToSelectFrom { get; set; } = Enumerable.Range(1, 10).ToList();
+
+    IEnumerable<int> Numbers { get; set; }
+    IEnumerable<int> FilteredNumbers => Numbers.Where(n => n % SelectedNumber == 0);
+
+    void OnNumberSelectedCallback(int number)
+    {
+        SelectedNumber = number;
+    }
+
+
+    protected override void OnInitialized()
+    {
+        Numbers = Enumerable.Range(1, 40).ToList();
+    }
+}
