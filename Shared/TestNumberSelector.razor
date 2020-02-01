@@ -15,7 +15,7 @@
     public List<int> NumRange { get; set; }
 
     [Parameter]
-    public Action<int> OnNumberSelected { get; set; }
+    public EventCallback<int> OnNumberSelected { get; set; }
 
     string SelectedNumberText
     {
@@ -26,7 +26,7 @@
         set
         {
             SelectedNumber = int.Parse(value);
-            OnNumberSelected(SelectedNumber);
+            OnNumberSelected.InvokeAsync(SelectedNumber);
         }
     }
 
